@@ -11,6 +11,7 @@ import {
   limit,
   getEdgeOffset,
   getElementMargin,
+  getContainerGridGap,
   getLockPixelOffset,
   getPosition,
   isTouchEvent,
@@ -256,17 +257,21 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
         const {node, collection} = active;
         const {index} = node.sortableInfo;
         const margin = getElementMargin(node);
+        const gridGap = getContainerGridGap(this.container);
 
         const containerBoundingRect = this.container.getBoundingClientRect();
         const dimensions = getHelperDimensions({index, node, collection});
 
         this.node = node;
         this.margin = margin;
+        this.gridGap = gridGap;
         this.width = dimensions.width;
         this.height = dimensions.height;
         this.marginOffset = {
-          x: this.margin.left + this.margin.right,
-          y: Math.max(this.margin.top, this.margin.bottom),
+          /* x: this.margin.left + this.margin.right,
+          y: Math.max(this.margin.top, this.margin.bottom), */
+          x: this.margin.left + this.margin.right + this.gridGap.x,
+          y: Math.max(this.margin.top, this.margin.bottom, this.gridGap.y),
         };
         this.boundingClientRect = node.getBoundingClientRect();
         this.containerBoundingRect = containerBoundingRect;
