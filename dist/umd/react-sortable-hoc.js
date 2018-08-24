@@ -118,6 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.closest = closest;
 	exports.limit = limit;
 	exports.getElementMargin = getElementMargin;
+	exports.getContainerGridGap = getContainerGridGap;
 	exports.provideDisplayName = provideDisplayName;
 	exports.getPosition = getPosition;
 	exports.isTouchEvent = isTouchEvent;
@@ -209,6 +210,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    bottom: getCSSPixelValue(style.marginBottom),
 	    left: getCSSPixelValue(style.marginLeft)
 	  };
+	}
+
+	function getContainerGridGap(element) {
+	  var style = window.getComputedStyle(element);
+	  if (style.display === 'grid') {
+	    return {
+	      x: getCSSPixelValue(style.gridColumnGap),
+	      y: getCSSPixelValue(style.gridRowGap)
+	    };
+	  }
+	  return { x: 0, y: 0 };
 	}
 
 	function provideDisplayName(prefix, Component) {
@@ -1259,17 +1271,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	          var index = node.sortableInfo.index;
 
 	          var margin = (0, _utils.getElementMargin)(node);
+	          var gridGap = (0, _utils.getContainerGridGap)(_this.container);
 
 	          var containerBoundingRect = _this.container.getBoundingClientRect();
 	          var dimensions = getHelperDimensions({ index: index, node: node, collection: collection });
 
 	          _this.node = node;
 	          _this.margin = margin;
+	          _this.gridGap = gridGap;
 	          _this.width = dimensions.width;
 	          _this.height = dimensions.height;
 	          _this.marginOffset = {
-	            x: _this.margin.left + _this.margin.right,
-	            y: Math.max(_this.margin.top, _this.margin.bottom)
+	            /* x: this.margin.left + this.margin.right,
+	            y: Math.max(this.margin.top, this.margin.bottom), */
+	            x: _this.margin.left + _this.margin.right + _this.gridGap.x,
+	            y: Math.max(_this.margin.top, _this.margin.bottom, _this.gridGap.y)
 	          };
 	          _this.boundingClientRect = node.getBoundingClientRect();
 	          _this.containerBoundingRect = containerBoundingRect;

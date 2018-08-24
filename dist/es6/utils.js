@@ -82,6 +82,17 @@ export function getElementMargin(element) {
   };
 }
 
+export function getContainerGridGap(element) {
+  var style = window.getComputedStyle(element);
+  if (style.display === 'grid') {
+    return {
+      x: getCSSPixelValue(style.gridColumnGap),
+      y: getCSSPixelValue(style.gridRowGap)
+    };
+  }
+  return { x: 0, y: 0 };
+}
+
 export function provideDisplayName(prefix, Component) {
   var componentName = Component.displayName || Component.name;
 

@@ -9,6 +9,7 @@ exports.omit = omit;
 exports.closest = closest;
 exports.limit = limit;
 exports.getElementMargin = getElementMargin;
+exports.getContainerGridGap = getContainerGridGap;
 exports.provideDisplayName = provideDisplayName;
 exports.getPosition = getPosition;
 exports.isTouchEvent = isTouchEvent;
@@ -100,6 +101,17 @@ function getElementMargin(element) {
     bottom: getCSSPixelValue(style.marginBottom),
     left: getCSSPixelValue(style.marginLeft)
   };
+}
+
+function getContainerGridGap(element) {
+  var style = window.getComputedStyle(element);
+  if (style.display === 'grid') {
+    return {
+      x: getCSSPixelValue(style.gridColumnGap),
+      y: getCSSPixelValue(style.gridRowGap)
+    };
+  }
+  return { x: 0, y: 0 };
 }
 
 function provideDisplayName(prefix, Component) {

@@ -13,7 +13,7 @@ import { findDOMNode } from 'react-dom';
 import invariant from 'invariant';
 
 import Manager from '../Manager';
-import { closest, events, vendorPrefix, limit, getEdgeOffset, getElementMargin, getLockPixelOffset, getPosition, isTouchEvent, provideDisplayName, omit } from '../utils';
+import { closest, events, vendorPrefix, limit, getEdgeOffset, getElementMargin, getContainerGridGap, getLockPixelOffset, getPosition, isTouchEvent, provideDisplayName, omit } from '../utils';
 
 // Export Higher Order Sortable Container Component
 export default function sortableContainer(WrappedComponent) {
@@ -141,17 +141,21 @@ export default function sortableContainer(WrappedComponent) {
           var index = node.sortableInfo.index;
 
           var margin = getElementMargin(node);
+          var gridGap = getContainerGridGap(_this.container);
 
           var containerBoundingRect = _this.container.getBoundingClientRect();
           var dimensions = getHelperDimensions({ index: index, node: node, collection: collection });
 
           _this.node = node;
           _this.margin = margin;
+          _this.gridGap = gridGap;
           _this.width = dimensions.width;
           _this.height = dimensions.height;
           _this.marginOffset = {
-            x: _this.margin.left + _this.margin.right,
-            y: Math.max(_this.margin.top, _this.margin.bottom)
+            /* x: this.margin.left + this.margin.right,
+            y: Math.max(this.margin.top, this.margin.bottom), */
+            x: _this.margin.left + _this.margin.right + _this.gridGap.x,
+            y: Math.max(_this.margin.top, _this.margin.bottom, _this.gridGap.y)
           };
           _this.boundingClientRect = node.getBoundingClientRect();
           _this.containerBoundingRect = containerBoundingRect;
