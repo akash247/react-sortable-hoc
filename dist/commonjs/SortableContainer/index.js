@@ -273,7 +273,7 @@ function sortableContainer(WrappedComponent) {
         event.preventDefault(); // Prevent scrolling on mobile
 
         _this.updatePosition(event);
-        _this.animateNodes();
+        // this.animateNodes();
         _this.autoscroll();
 
         if (onSortMove) {
@@ -388,7 +388,7 @@ function sortableContainer(WrappedComponent) {
             _this.scrollContainer.scrollLeft += offset.left;
             _this.translate.x += offset.left;
             _this.translate.y += offset.top;
-            _this.animateNodes();
+            // this.animateNodes();
           }, 5);
         }
       };

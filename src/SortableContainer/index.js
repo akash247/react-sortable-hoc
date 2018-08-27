@@ -383,7 +383,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
       event.preventDefault(); // Prevent scrolling on mobile
 
       this.updatePosition(event);
-      this.animateNodes();
+      // this.animateNodes();
       this.autoscroll();
 
       if (onSortMove) {
@@ -742,7 +742,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
             this.scrollContainer.scrollLeft += offset.left;
             this.translate.x += offset.left;
             this.translate.y += offset.top;
-            this.animateNodes();
+            // this.animateNodes();
           },
           5
         );
