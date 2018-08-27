@@ -154,6 +154,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     }
 
     handleStart = event => {
+      console.log('handleStart');
       const {distance, shouldCancelStart} = this.props;
 
       if (event.button === 2 || shouldCancelStart(event)) {
@@ -208,6 +209,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     };
 
     handleMove = event => {
+      console.log('handleEnd');
       const {distance, pressThreshold} = this.props;
 
       if (!this.state.sorting && this._touched) {
@@ -228,6 +230,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     };
 
     handleEnd = () => {
+      console.log('handleEnd');
       const {distance} = this.props;
 
       this._touched = false;
@@ -245,7 +248,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     };
 
     handlePress = event => {
-      console.log('debug handle');
+      console.log('handlePress');
       const active = this.manager.getActive();
 
       if (active) {
@@ -382,6 +385,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     };
 
     handleSortMove = event => {
+      console.log('handleSortMove');
       const {onSortMove} = this.props;
       event.preventDefault(); // Prevent scrolling on mobile
 
@@ -395,6 +399,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     };
 
     handleSortEnd = event => {
+      console.log('handleSortEnd');
       const {hideSortableGhost, onSortEnd} = this.props;
       const {collection} = this.manager.active;
 

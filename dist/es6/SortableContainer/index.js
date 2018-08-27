@@ -30,6 +30,7 @@ export default function sortableContainer(WrappedComponent) {
       var _this = _possibleConstructorReturn(this, (_class.__proto__ || _Object$getPrototypeOf(_class)).call(this, props));
 
       _this.handleStart = function (event) {
+        console.log('handleStart');
         var _this$props = _this.props,
             distance = _this$props.distance,
             shouldCancelStart = _this$props.shouldCancelStart;
@@ -85,6 +86,7 @@ export default function sortableContainer(WrappedComponent) {
       };
 
       _this.handleMove = function (event) {
+        console.log('handleEnd');
         var _this$props2 = _this.props,
             distance = _this$props2.distance,
             pressThreshold = _this$props2.pressThreshold;
@@ -108,6 +110,7 @@ export default function sortableContainer(WrappedComponent) {
       };
 
       _this.handleEnd = function () {
+        console.log('handleEnd');
         var distance = _this.props.distance;
 
 
@@ -126,7 +129,7 @@ export default function sortableContainer(WrappedComponent) {
       };
 
       _this.handlePress = function (event) {
-        console.log('debug handle');
+        console.log('handlePress');
         var active = _this.manager.getActive();
 
         if (active) {
@@ -242,6 +245,7 @@ export default function sortableContainer(WrappedComponent) {
       };
 
       _this.handleSortMove = function (event) {
+        console.log('handleSortMove');
         var onSortMove = _this.props.onSortMove;
 
         event.preventDefault(); // Prevent scrolling on mobile
@@ -256,6 +260,7 @@ export default function sortableContainer(WrappedComponent) {
       };
 
       _this.handleSortEnd = function (event) {
+        console.log('handleSortEnd');
         var _this$props4 = _this.props,
             hideSortableGhost = _this$props4.hideSortableGhost,
             onSortEnd = _this$props4.onSortEnd;

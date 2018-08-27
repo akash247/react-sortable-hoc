@@ -1160,6 +1160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this = (0, _possibleConstructorReturn3.default)(this, (_class.__proto__ || (0, _getPrototypeOf2.default)(_class)).call(this, props));
 
 	      _this.handleStart = function (event) {
+	        console.log('handleStart');
 	        var _this$props = _this.props,
 	            distance = _this$props.distance,
 	            shouldCancelStart = _this$props.shouldCancelStart;
@@ -1215,6 +1216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      _this.handleMove = function (event) {
+	        console.log('handleEnd');
 	        var _this$props2 = _this.props,
 	            distance = _this$props2.distance,
 	            pressThreshold = _this$props2.pressThreshold;
@@ -1238,6 +1240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      _this.handleEnd = function () {
+	        console.log('handleEnd');
 	        var distance = _this.props.distance;
 
 
@@ -1256,7 +1259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      _this.handlePress = function (event) {
-	        console.log('debug handle');
+	        console.log('handlePress');
 	        var active = _this.manager.getActive();
 
 	        if (active) {
@@ -1372,6 +1375,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      _this.handleSortMove = function (event) {
+	        console.log('handleSortMove');
 	        var onSortMove = _this.props.onSortMove;
 
 	        event.preventDefault(); // Prevent scrolling on mobile
@@ -1386,6 +1390,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      _this.handleSortEnd = function (event) {
+	        console.log('handleSortEnd');
 	        var _this$props4 = _this.props,
 	            hideSortableGhost = _this$props4.hideSortableGhost,
 	            onSortEnd = _this$props4.onSortEnd;
