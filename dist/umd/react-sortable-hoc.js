@@ -1376,7 +1376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        event.preventDefault(); // Prevent scrolling on mobile
 
 	        _this.updatePosition(event);
-	        // this.animateNodes();
+	        _this.animateNodes();
 	        _this.autoscroll();
 
 	        if (onSortMove) {
@@ -1491,7 +1491,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this.scrollContainer.scrollLeft += offset.left;
 	            _this.translate.x += offset.left;
 	            _this.translate.y += offset.top;
-	            // this.animateNodes();
+	            _this.animateNodes();
 	          }, 5);
 	        }
 	      };
@@ -1709,7 +1709,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 
 	          if (transitionDuration) {
-	            node.style[_utils.vendorPrefix + 'TransitionDuration'] = transitionDuration + 'ms';
+	            /* node.style[
+	              `${vendorPrefix}TransitionDuration`
+	            ] = `${transitionDuration}ms`; */
 	          }
 
 	          if (this.axis.x) {
@@ -1764,7 +1766,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              }
 	            }
 	          }
-	          node.style[_utils.vendorPrefix + 'Transform'] = 'translate3d(' + translate.x + 'px,' + translate.y + 'px,0)';
+	          // node.style[`${vendorPrefix}Transform`] = `translate3d(${translate.x}px,${translate.y}px,0)`;
 	        }
 
 	        if (this.newIndex == null) {

@@ -383,7 +383,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
       event.preventDefault(); // Prevent scrolling on mobile
 
       this.updatePosition(event);
-      // this.animateNodes();
+      this.animateNodes();
       this.autoscroll();
 
       if (onSortMove) {
@@ -589,9 +589,9 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
         }
 
         if (transitionDuration) {
-          node.style[
+          /* node.style[
             `${vendorPrefix}TransitionDuration`
-          ] = `${transitionDuration}ms`;
+          ] = `${transitionDuration}ms`; */
         }
 
         if (this.axis.x) {
@@ -678,7 +678,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
             }
           }
         }
-        node.style[`${vendorPrefix}Transform`] = `translate3d(${translate.x}px,${translate.y}px,0)`;
+        // node.style[`${vendorPrefix}Transform`] = `translate3d(${translate.x}px,${translate.y}px,0)`;
       }
 
       if (this.newIndex == null) {
@@ -742,7 +742,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
             this.scrollContainer.scrollLeft += offset.left;
             this.translate.x += offset.left;
             this.translate.y += offset.top;
-            // this.animateNodes();
+            this.animateNodes();
           },
           5
         );
