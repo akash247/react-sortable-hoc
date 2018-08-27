@@ -1375,7 +1375,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        event.preventDefault(); // Prevent scrolling on mobile
 
-	        _this.updatePosition(event);
+	        // this.updatePosition(event);
 	        _this.animateNodes();
 	        _this.autoscroll();
 
