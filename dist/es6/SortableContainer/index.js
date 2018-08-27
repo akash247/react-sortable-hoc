@@ -578,10 +578,8 @@ export default function sortableContainer(WrappedComponent) {
             continue;
           }
 
-          if (transitionDuration) {
-            /* node.style[
-              `${vendorPrefix}TransitionDuration`
-            ] = `${transitionDuration}ms`; */
+          if (transitionDuration && !this.props.disableAnimation) {
+            node.style[vendorPrefix + 'TransitionDuration'] = transitionDuration + 'ms';
           }
 
           if (this.axis.x) {
@@ -636,7 +634,9 @@ export default function sortableContainer(WrappedComponent) {
               }
             }
           }
-          // node.style[`${vendorPrefix}Transform`] = `translate3d(${translate.x}px,${translate.y}px,0)`;
+          if (!this.props.disableAnimation) {
+            node.style[vendorPrefix + 'Transform'] = 'translate3d(' + translate.x + 'px,' + translate.y + 'px,0)';
+          }
         }
 
         if (this.newIndex == null) {
@@ -701,6 +701,7 @@ export default function sortableContainer(WrappedComponent) {
     },
     lockToContainerEdges: false,
     lockOffset: '50%',
+    disableAnimation: false,
     getHelperDimensions: function getHelperDimensions(_ref) {
       var node = _ref.node;
       return {
@@ -727,7 +728,8 @@ export default function sortableContainer(WrappedComponent) {
     lockToContainerEdges: PropTypes.bool,
     lockOffset: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))]),
     getContainer: PropTypes.func,
-    getHelperDimensions: PropTypes.func
+    getHelperDimensions: PropTypes.func,
+    disableAnimation: PropTypes.bool
   }, _class.childContextTypes = {
     manager: PropTypes.object.isRequired
   }, _temp;

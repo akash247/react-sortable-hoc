@@ -59,6 +59,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
       },
       lockToContainerEdges: false,
       lockOffset: '50%',
+      disableAnimation: false,
       getHelperDimensions: ({node}) => ({
         width: node.offsetWidth,
         height: node.offsetHeight,
@@ -91,6 +92,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
       ]),
       getContainer: PropTypes.func,
       getHelperDimensions: PropTypes.func,
+      disableAnimation: PropTypes.bool,
     };
 
     static childContextTypes = {
@@ -588,10 +590,10 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
           continue;
         }
 
-        if (transitionDuration) {
-          /* node.style[
+        if (transitionDuration && !this.props.disableAnimation) {
+          node.style[
             `${vendorPrefix}TransitionDuration`
-          ] = `${transitionDuration}ms`; */
+          ] = `${transitionDuration}ms`;
         }
 
         if (this.axis.x) {
@@ -678,7 +680,9 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
             }
           }
         }
-        // node.style[`${vendorPrefix}Transform`] = `translate3d(${translate.x}px,${translate.y}px,0)`;
+        if (!this.props.disableAnimation) {
+          node.style[`${vendorPrefix}Transform`] = `translate3d(${translate.x}px,${translate.y}px,0)`;
+        }
       }
 
       if (this.newIndex == null) {
