@@ -1633,7 +1633,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else if (lockAxis === 'y') {
 	          translate.x = 0;
 	        }
-	        if (this.props.disableAnimation) {
+	        if (!this.props.disableAnimation) {
 	          this.helper.style[_utils.vendorPrefix + 'Transform'] = 'translate3d(' + translate.x + 'px,' + translate.y + 'px, 0)';
 	        }
 	      }

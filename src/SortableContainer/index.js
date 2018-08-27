@@ -520,7 +520,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
       } else if (lockAxis === 'y') {
         translate.x = 0;
       }
-      if (this.props.disableAnimation) {
+      if (!this.props.disableAnimation) {
         this.helper.style[
           `${vendorPrefix}Transform`
         ] = `translate3d(${translate.x}px,${translate.y}px, 0)`;
