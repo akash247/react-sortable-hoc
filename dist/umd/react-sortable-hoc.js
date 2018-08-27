@@ -1176,7 +1176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          return el.sortableInfo != null;
 	        });
 
-	        if (node && node.sortableInfo && _this.nodeIsChild(node) && !_this.state.sorting) {
+	        if (node && node.sortableInfo && _this.nodeIsChild(node) && !_this.sorting) {
 	          var useDragHandle = _this.props.useDragHandle;
 	          var _node$sortableInfo = node.sortableInfo,
 	              index = _node$sortableInfo.index,
@@ -1220,7 +1220,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            pressThreshold = _this$props2.pressThreshold;
 
 
-	        if (!_this.state.sorting && _this._touched) {
+	        if (!_this.sorting && _this._touched) {
 	          var position = (0, _utils.getPosition)(event);
 	          var delta = _this._delta = {
 	            x: _this._pos.x - position.x,
@@ -1249,7 +1249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      _this.cancel = function () {
-	        if (!_this.state.sorting) {
+	        if (!_this.sorting) {
 	          clearTimeout(_this.pressTimer);
 	          _this.manager.active = null;
 	        }
@@ -1360,10 +1360,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return _this.listenerNode.addEventListener(eventName, _this.handleSortEnd, false);
 	          });
 
-	          _this.setState({
+	          _this.sorting = true;
+
+	          /* this.setState({
 	            sorting: true,
-	            sortingIndex: index
-	          });
+	            sortingIndex: index,
+	          }); */
 
 	          if (onSortStart) {
 	            onSortStart({ node: node, index: index, collection: collection }, event);
@@ -1430,10 +1432,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Update state
 	        _this.manager.active = null;
 
-	        _this.setState({
+	        _this.sorting = false;
+	        /* this.setState({
 	          sorting: false,
-	          sortingIndex: null
-	        });
+	          sortingIndex: null,
+	        }); */
 
 	        if (typeof onSortEnd === 'function') {
 	          onSortEnd({
@@ -1507,6 +1510,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      (0, _invariant2.default)(!(props.distance && props.pressDelay), 'Attempted to set both `pressDelay` and `distance` on SortableContainer, you may only use one or the other, not both at the same time.');
 
 	      _this.state = {};
+
+	      _this.sorting = false;
 	      return _this;
 	    }
 
