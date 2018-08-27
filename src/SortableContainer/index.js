@@ -780,6 +780,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     }
 
     render() {
+      console.log('in render');
       const ref = config.withRef ? 'wrappedInstance' : null;
 
       return (

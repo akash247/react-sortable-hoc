@@ -708,6 +708,7 @@ function sortableContainer(WrappedComponent) {
     }, {
       key: 'render',
       value: function render() {
+        console.log('in render');
         var ref = config.withRef ? 'wrappedInstance' : null;
 
         return _react2.default.createElement(WrappedComponent, _extends({
