@@ -245,6 +245,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
     };
 
     handlePress = event => {
+      console.log('debug handle press');
       const active = this.manager.getActive();
 
       if (active) {
@@ -384,7 +385,7 @@ export default function sortableContainer(WrappedComponent, config = {withRef: f
       const {onSortMove} = this.props;
       event.preventDefault(); // Prevent scrolling on mobile
 
-      // this.updatePosition(event);
+      this.updatePosition(event);
       this.animateNodes();
       this.autoscroll();
 

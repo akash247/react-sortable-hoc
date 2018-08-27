@@ -1256,6 +1256,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      _this.handlePress = function (event) {
+	        console.log('debug handle press');
 	        var active = _this.manager.getActive();
 
 	        if (active) {
@@ -1375,7 +1376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        event.preventDefault(); // Prevent scrolling on mobile
 
-	        // this.updatePosition(event);
+	        _this.updatePosition(event);
 	        _this.animateNodes();
 	        _this.autoscroll();
 

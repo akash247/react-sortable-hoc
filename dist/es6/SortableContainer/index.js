@@ -126,6 +126,7 @@ export default function sortableContainer(WrappedComponent) {
       };
 
       _this.handlePress = function (event) {
+        console.log('debug handle press');
         var active = _this.manager.getActive();
 
         if (active) {
@@ -245,7 +246,7 @@ export default function sortableContainer(WrappedComponent) {
 
         event.preventDefault(); // Prevent scrolling on mobile
 
-        // this.updatePosition(event);
+        _this.updatePosition(event);
         _this.animateNodes();
         _this.autoscroll();
 
