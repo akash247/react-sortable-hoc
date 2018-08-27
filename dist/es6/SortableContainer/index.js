@@ -46,7 +46,7 @@ export default function sortableContainer(WrappedComponent) {
           return el.sortableInfo != null;
         });
 
-        if (node && node.sortableInfo && _this.nodeIsChild(node) && !_this.sorting) {
+        if (node && node.sortableInfo && _this.nodeIsChild(node) && !_this.state.sorting) {
           var useDragHandle = _this.props.useDragHandle;
           var _node$sortableInfo = node.sortableInfo,
               index = _node$sortableInfo.index,
@@ -90,7 +90,7 @@ export default function sortableContainer(WrappedComponent) {
             pressThreshold = _this$props2.pressThreshold;
 
 
-        if (!_this.sorting && _this._touched) {
+        if (!_this.state.sorting && _this._touched) {
           var position = getPosition(event);
           var delta = _this._delta = {
             x: _this._pos.x - position.x,
@@ -119,14 +119,14 @@ export default function sortableContainer(WrappedComponent) {
       };
 
       _this.cancel = function () {
-        if (!_this.sorting) {
+        if (!_this.state.sorting) {
           clearTimeout(_this.pressTimer);
           _this.manager.active = null;
         }
       };
 
       _this.handlePress = function (event) {
-        console.log('debug handle press');
+        console.log('debug handle');
         var active = _this.manager.getActive();
 
         if (active) {
@@ -230,12 +230,10 @@ export default function sortableContainer(WrappedComponent) {
             return _this.listenerNode.addEventListener(eventName, _this.handleSortEnd, false);
           });
 
-          _this.sorting = true;
-
-          /* this.setState({
+          _this.setState({
             sorting: true,
-            sortingIndex: index,
-          }); */
+            sortingIndex: index
+          });
 
           if (onSortStart) {
             onSortStart({ node: node, index: index, collection: collection }, event);
@@ -302,11 +300,10 @@ export default function sortableContainer(WrappedComponent) {
         // Update state
         _this.manager.active = null;
 
-        _this.sorting = false;
-        /* this.setState({
+        _this.setState({
           sorting: false,
-          sortingIndex: null,
-        }); */
+          sortingIndex: null
+        });
 
         if (typeof onSortEnd === 'function') {
           onSortEnd({
@@ -380,8 +377,6 @@ export default function sortableContainer(WrappedComponent) {
       invariant(!(props.distance && props.pressDelay), 'Attempted to set both `pressDelay` and `distance` on SortableContainer, you may only use one or the other, not both at the same time.');
 
       _this.state = {};
-
-      _this.sorting = false;
       return _this;
     }
 
@@ -685,7 +680,7 @@ export default function sortableContainer(WrappedComponent) {
 
         return React.createElement(WrappedComponent, _extends({
           ref: ref
-        }, omit(this.props, 'contentWindow', 'useWindowAsScrollContainer', 'distance', 'helperClass', 'hideSortableGhost', 'transitionDuration', 'useDragHandle', 'pressDelay', 'pressThreshold', 'shouldCancelStart', 'onSortStart', 'onSortMove', 'onSortEnd', 'axis', 'lockAxis', 'lockOffset', 'lockToContainerEdges', 'getContainer', 'getHelperDimensions')));
+        }, omit(this.props, 'contentWindow', 'useWindowAsScrollContainer', 'distance', 'helperClass', 'hideSortableGhost', 'transitionDuration', 'useDragHandle', 'pressDelay', 'pressThreshold', 'shouldCancelStart', 'onSortStart', 'onSortMove', 'onSortEnd', 'axis', 'lockAxis', 'lockOffset', 'lockToContainerEdges', 'getContainer', 'getHelperDimensions', 'disableAnimation')));
       }
     }]);
 
