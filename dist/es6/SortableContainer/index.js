@@ -503,8 +503,9 @@ export default function sortableContainer(WrappedComponent) {
         } else if (lockAxis === 'y') {
           translate.x = 0;
         }
-
-        this.helper.style[vendorPrefix + 'Transform'] = 'translate3d(' + translate.x + 'px,' + translate.y + 'px, 0)';
+        if (this.props.disableAnimation) {
+          this.helper.style[vendorPrefix + 'Transform'] = 'translate3d(' + translate.x + 'px,' + translate.y + 'px, 0)';
+        }
       }
     }, {
       key: 'animateNodes',

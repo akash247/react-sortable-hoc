@@ -530,8 +530,9 @@ function sortableContainer(WrappedComponent) {
         } else if (lockAxis === 'y') {
           translate.x = 0;
         }
-
-        this.helper.style[_utils.vendorPrefix + 'Transform'] = 'translate3d(' + translate.x + 'px,' + translate.y + 'px, 0)';
+        if (this.props.disableAnimation) {
+          this.helper.style[_utils.vendorPrefix + 'Transform'] = 'translate3d(' + translate.x + 'px,' + translate.y + 'px, 0)';
+        }
       }
     }, {
       key: 'animateNodes',
